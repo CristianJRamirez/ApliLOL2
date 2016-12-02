@@ -55,7 +55,7 @@ public class MainActivityFragment extends Fragment {
 
         champions = new ArrayList<>();
 
-      String[] Ejemplos = {
+    /*  String[] Ejemplos = {
             "Maestro Yi",
             "VI",
             "Ashe",
@@ -64,12 +64,12 @@ public class MainActivityFragment extends Fragment {
             "Ekko",
             "Jhin"
             };
-        champions = new ArrayList<>(Arrays.asList(Ejemplos));
+        champions = new ArrayList<>(Arrays.asList(Ejemplos));*/
 
         adapter = new ArrayAdapter<>(
                 getContext(),
                 R.layout.champion_layout,
-                R.id.Champion,
+                R.id.txtChampion,
                 champions
         );
         listaChampions.setAdapter(adapter);

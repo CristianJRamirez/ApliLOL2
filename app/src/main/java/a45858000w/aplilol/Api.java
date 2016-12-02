@@ -2,6 +2,7 @@ package a45858000w.aplilol;
 
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,20 +54,22 @@ public class Api {
         return null;
     }
     public ArrayList<Champion> getAllChampions(){
-        Uri builtUri = Uri.parse(ChampionListaImagenes)
+        Uri builtUri = Uri.parse("https://euw.api.pvp.net/api/lol/euw/v1.2/champion?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3")
                 .buildUpon()
                 //.appendPath("box_office.json")
                 // .appendQueryParameter("country", pais)//para buscar dentro de la api con algun paramentro en concreto
                 .build();
         String url = builtUri.toString();
-
+        Log.d("URL", url);
 
         try {
             String JsonResponse = HttpUtils.get(url);
+
             ArrayList<Champion> cartas =new ArrayList<>();
 
             JSONObject data= new JSONObject(JsonResponse);
-            JSONArray jsonChamps = data.getJSONArray("cards");
+            JSONArray jsonChamps = data.getJSONArray("Champion");
+            Log.d("jsonChamps", jsonChamps.get(0).toString());
 
             for (int i = 0; i<jsonChamps.length() ; i++) {
                 Champion c= new Champion();
