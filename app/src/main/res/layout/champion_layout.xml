@@ -9,8 +9,8 @@ android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/ImageChamp"
-        android:layout_width="92dp"
-        android:layout_height="0dp"
+        android:layout_width="61dp"
+        android:layout_height="64dp"
         android:layout_centerVertical="true"
         android:adjustViewBounds="true"
         android:maxHeight="70dp"
@@ -28,11 +28,12 @@ android:layout_height="match_parent">
 
     <TextView
         android:text="Champion"
-        android:layout_width="87dp"
+        android:layout_width="61dp"
         android:layout_height="wrap_content"
         android:id="@+id/txtChampion"
         android:gravity="center_vertical"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintTop_toTopOf="parent"
         android:minHeight="?android:attr/listPreferredItemHeight"
 
@@ -48,6 +49,7 @@ android:layout_height="match_parent">
         android:layout_alignLeft="@+id/txtChampion"
         android:layout_below="@+id/txtChampion"
         android:textSize="12sp"
+        android:gravity="center_vertical"
         android:layout_marginEnd="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="8dp"
@@ -58,6 +60,14 @@ android:layout_height="match_parent">
         app:layout_constraintLeft_toRightOf="@+id/txtChampion"
         android:layout_marginLeft="8dp" />
 
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/vertical"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="194dp"
+        app:layout_constraintGuide_percent="0.5052083" />
 
 </android.support.constraint.ConstraintLayout>
 
