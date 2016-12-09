@@ -120,6 +120,10 @@ public class MainActivityFragment extends Fragment {
 
             return result;
         }
+
+        //crear filtros
+        //https://github.com/CristianJRamirez/MagicList2/commit/599406c2f125d4d74ea9f34e5c9f649d14aa8845
+
         @Override
         protected void onPostExecute(ArrayList<Champion> champions) {
             super.onPostExecute(champions);
