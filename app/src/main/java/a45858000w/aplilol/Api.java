@@ -4,12 +4,18 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by 45858000w on 02/12/16.
@@ -60,34 +66,31 @@ public class Api {
                 // .appendQueryParameter("country", pais)//para buscar dentro de la api con algun paramentro en concreto
                 .build();
         String url = builtUri.toString();
-        Log.d("URL", url);
+        //Log.d("URL", url);
 
         try {
             String JsonResponse = HttpUtils.get(url);
 
             ArrayList<Champion> cartas =new ArrayList<>();
 
+
+           // Log.d("URLS",ChampionLista);//https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3
+           // Log.d("URLS",ChampionListaImagenes);//https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=image&api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3
+           // Log.d("URLS",ChampionIDDetalle);//https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/0?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3
+           // Log.d("URLS",ChampionIDDetalleImagen);//https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/0?champData=image&api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3
+
             JSONObject data= new JSONObject(JsonResponse);
-            JSONArray jsonChamps = data.getJSONArray("Champion");
-            Log.d("jsonChamps", jsonChamps.get(0).toString());
+            JSONArray jsonChamps = data.getJSONArray("champions");
+            //Log.d("jsonChamps", jsonChamps.get(0).toString());
 
             for (int i = 0; i<jsonChamps.length() ; i++) {
                 Champion c= new Champion();
                 JSONObject object = jsonChamps.getJSONObject(i);
 
-                if (object.has("name")) {
-                    c.setName(object.getString("name"));
-                }
                 if (object.has("id")) {
-                    c.setId(object.getString("id"));
-                }
-                if (object.has("titulo")) {
-                    c.setTitulo(object.getString("titulo"));
-                }
-                if (object.has("key")) {
-                    c.setKey(object.getString("key"));
-                }
-
+                  //  c.setId(object.getString("id"));
+                    c=getDetallesId(object.getString("id"));
+               }
                 cartas.add(c);
             }
 
@@ -99,5 +102,57 @@ public class Api {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private Champion getDetallesId(String id) {
+       // Uri builtUri = Uri.parse("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+id+"?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3")
+        Uri builtUri = Uri.parse("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+id+"?champData=image&api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3")
+                .buildUpon()
+                .build();
+        String url = builtUri.toString();
+
+        try {
+            String JsonResponse = HttpUtils.get(url);
+            Gson gson = new Gson();
+            Champion champ= gson.fromJson(JsonResponse,
+                    Champion.class);
+
+
+            String[] list = JsonResponse.split("\"image\":");
+
+            JsonResponse=list[1].substring(0,list[1].length()-2);
+
+
+
+            ImageChamp imagC= gson.fromJson(JsonResponse,
+                    ImageChamp.class);
+
+            champ.setImageSprite(imagC.getSprite());
+            champ.setImageSquareFull(imagC.getFull());
+
+
+          /*  JSONObject data= new JSONObject(JsonResponse);
+            JSONArray jsonChamps = data.getJSONArray("image");
+
+            for (int i = 0; i<data.length() ; i++) {
+                JSONObject object = jsonChamps.getJSONObject(i);
+
+                if (object.has("full")) {
+                    champ.setImageSquareFull(object.getString("full"));
+                }
+                if (object.has("sprite")) {
+                    champ.setImageSprite(object.getString("sprite"));
+                }
+
+
+            }
+*/
+
+            return champ;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        return null;
+
     }
 }

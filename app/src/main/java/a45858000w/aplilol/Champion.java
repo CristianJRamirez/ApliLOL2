@@ -6,13 +6,13 @@ package a45858000w.aplilol;
 
 public class Champion {
 
-    private String ImageChampionSquare="http://ddragon.leagueoflegends.com/cdn/6.23.1/img/champion/Aatrox.png";
-    private String ImageChampionLarge="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg";
-    private String ImageChampionFondo="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg";
+    private String ImageChampionSquare="http://ddragon.leagueoflegends.com/cdn/6.23.1/img/champion/";//Aatrox.png";
+    private String ImageChampionLarge="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/";//Aatrox_0.jpg";
+    private String ImageChampionFondo="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/";//Aatrox_0.jpg";
 
     private String name;
     private String id;
-    private String titulo;
+    private String title;
     private String key;
 
     private String ImageW;
@@ -38,12 +38,12 @@ public class Champion {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitle(String titulo) {
+        this.title = titulo;
     }
 
     public String getKey() {
@@ -75,7 +75,7 @@ public class Champion {
     }
 
     public void setImageSquareFull(String imageSquareFull) {
-        ImageSquareFull = imageSquareFull;
+        ImageSquareFull = ImageChampionSquare+imageSquareFull;
     }
 
     public String getImageSprite() {
@@ -83,7 +83,7 @@ public class Champion {
     }
 
     public void setImageSprite(String imageSprite) {
-        ImageSprite = imageSprite;
+        ImageSprite = ImageChampionLarge+imageSprite;
     }
 
     public String getImageY() {
@@ -107,8 +107,10 @@ public class Champion {
         return "Champion{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
-                ", titulo='" + titulo + '\'' +
+                ", title='" + title + '\'' +
                 ", key='" + key + '\'' +
                 '}';
     }
+
+
 }
