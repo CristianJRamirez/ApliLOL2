@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 /**
@@ -37,11 +39,12 @@ public class ChampionAdapter extends ArrayAdapter<Champion> {
         // Unim el codi en les Views del Layout
         TextView Champion = (TextView) convertView.findViewById(R.id.txtChampion);
         TextView title = (TextView) convertView.findViewById(R.id.titulo);
-        ImageView ivPosterImage = (ImageView) convertView.findViewById(R.id.ImageChamp);
+        ImageView Image = (ImageView) convertView.findViewById(R.id.ImageChamp);
 
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
         Champion.setText(c.getName());
         title.setText(c.getTitle());
+        Glide.with(getContext()).load(c.getImageSquareFull()).into(Image);
 
 
         // Retornem la View replena per a mostrarla
