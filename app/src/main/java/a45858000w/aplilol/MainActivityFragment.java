@@ -31,8 +31,8 @@ import java.util.Arrays;
 public class MainActivityFragment extends Fragment {
 
     //region VARIABLES
-    private ArrayList<String> champions;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Champion> champions;
+    private ArrayAdapter<Champion> adapter;
     //endregion
 
 
@@ -129,7 +129,7 @@ public class MainActivityFragment extends Fragment {
             super.onPostExecute(champions);
             adapter.clear();
             for (Champion c : champions) {
-                    adapter.add(c.getName());
+                    adapter.add(c);
                 }
         }
     }
