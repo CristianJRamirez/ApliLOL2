@@ -32,7 +32,9 @@ public class MainActivityFragment extends Fragment {
 
     //region VARIABLES
     private ArrayList<Champion> champions;
-    private ArrayAdapter<Champion> adapter;
+   // private ArrayAdapter<Champion> adapter;
+
+    private ChampionAdapter adapter;
     //endregion
 
 
@@ -66,10 +68,10 @@ public class MainActivityFragment extends Fragment {
             };
         champions = new ArrayList<>(Arrays.asList(Ejemplos));*/
 
-        adapter = new ArrayAdapter<>(
+        adapter = new ChampionAdapter(
                 getContext(),
                 R.layout.champion_layout,
-                R.id.txtChampion,
+                //R.id.txtChampion,
                 champions
         );
         listaChampions.setAdapter(adapter);
@@ -123,6 +125,8 @@ public class MainActivityFragment extends Fragment {
 
         //crear filtros
         //https://github.com/CristianJRamirez/MagicList2/commit/599406c2f125d4d74ea9f34e5c9f649d14aa8845
+        //https://github.com/CristianJRamirez/MagicList2/commit/3e485d4447b9917fe2ca74e0d3453a810c381b7b
+        //https://github.com/CristianJRamirez/MagicList2/commit/2f4b5ba353c4c3658492a6e2f5ed2ee7624711d9
 
         @Override
         protected void onPostExecute(ArrayList<Champion> champions) {
