@@ -96,6 +96,12 @@ public class MainActivityFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onStart() {
+            super.onStart();
+            refresh();
+        }
+
     private void refresh() {
        /*Api api = new Api();
        String result = api.getChampions();
