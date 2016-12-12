@@ -71,7 +71,7 @@ public class Api {
         try {
             String JsonResponse = HttpUtils.get(url);
 
-            ArrayList<Champion> cartas =new ArrayList<>();
+            ArrayList<Champion> champs =new ArrayList<>();
 
 
            // Log.d("URLS",ChampionLista);//https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3
@@ -88,11 +88,11 @@ public class Api {
                 if (object.has("id")) {
                     c=getDetallesId(object.getString("id"));
                }
-                cartas.add(c);
+                champs.add(c);
             }
 
 
-            return cartas;
+            return champs;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -121,9 +121,11 @@ public class Api {
                     ImageChamp.class);
 
             //seteo el valor de la imagen en el campeon
-            champ.setImageSprite(imagC.getSprite());
-            champ.setImageSquareFull(imagC.getFull());
+            String img[]=imagC.getSprite().split(".");
 
+            champ.setImageSprite(imagC.getSprite());//ACABAR 
+            champ.setImageSquareFull(imagC.getFull());
+            Log.d("IMG",imagC.getFull() +"///"+imagC.getSprite());
 
 
             return champ;

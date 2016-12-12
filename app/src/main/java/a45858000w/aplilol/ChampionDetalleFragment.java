@@ -57,7 +57,7 @@ public class ChampionDetalleFragment extends Fragment {
         descripcionChamp = (TextView) view.findViewById(R.id.descripcionChamp);
 
 
-        NombreChampion.setText(Html.fromHtml("<b>Nombre : </b> " +champion.getName() );
+        NombreChampion.setText(Html.fromHtml("<b>Nombre : </b> " +champion.getName()));
         idChampion.setText(Html.fromHtml("<b>ID : </b> " + champion.getId()));
         titleChampion.setText(Html.fromHtml("<b>Titulo : </b> " + champion.getTitle()));
         Glide.with(getContext()).load(champion.getImageSprite()).into(ImageChampion);

@@ -1,10 +1,12 @@
 package a45858000w.aplilol;
 
+import java.io.Serializable;
+
 /**
  * Created by 45858000w on 02/12/16.
  */
 
-public class Champion {
+public class Champion implements Serializable {
 
     private String ImageChampionSquare="http://ddragon.leagueoflegends.com/cdn/6.23.1/img/champion/";//Aatrox.png";
     private String ImageChampionLarge="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/";//Aatrox_0.jpg";
@@ -106,11 +108,11 @@ public class Champion {
     public String toString() {
         return "Champion{" +
                 "name='" + name + '\'' +
-                ", id=" + id +
+                ", id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", key='" + key + '\'' +
+                ", ImageSquareFull='" + ImageSquareFull + '\'' +
+                ", ImageSprite='" + ImageSprite + '\'' +
                 '}';
     }
-
-
 }
