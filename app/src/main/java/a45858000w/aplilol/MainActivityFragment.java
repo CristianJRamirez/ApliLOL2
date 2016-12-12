@@ -1,5 +1,6 @@
 package a45858000w.aplilol;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -75,6 +77,16 @@ public class MainActivityFragment extends Fragment {
                 champions
         );
         listaChampions.setAdapter(adapter);
+
+        listaChampions.setOnItemClickListener(new AdapterView.OnItemClickListener() {@Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Champion champion = (Champion) adapterView.getItemAtPosition(i);
+
+            Intent intent = new Intent(getContext(), ChampionDetalle.class);
+            intent.putExtra("champion", champion);
+            startActivity(intent);
+            }
+         });
 
         return view;
     }
