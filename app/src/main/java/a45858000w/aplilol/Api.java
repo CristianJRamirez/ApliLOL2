@@ -120,13 +120,12 @@ public class Api {
             ImageChamp imagC= gson.fromJson(JsonResponse,
                     ImageChamp.class);
 
+
             //seteo el valor de la imagen en el campeon
-            String img[]=imagC.getSprite().split(".");
-
-            champ.setImageSprite(imagC.getSprite());//ACABAR 
+            String img[]=imagC.getFull().split("\\.");
+            champ.setImageSprite(img[0]+"_0.jpg");//ACABAR
             champ.setImageSquareFull(imagC.getFull());
-            Log.d("IMG",imagC.getFull() +"///"+imagC.getSprite());
-
+            //Log.d("IMGCHMP",champ.getImageSquareFull() +"///"+champ.getImageSprite());
 
             return champ;
             } catch (IOException e) {

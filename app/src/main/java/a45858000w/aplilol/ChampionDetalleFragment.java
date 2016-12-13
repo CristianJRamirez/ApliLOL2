@@ -50,7 +50,7 @@ public class ChampionDetalleFragment extends Fragment {
     {
         Log.d("CHAMPION", champion.toString());
 
-        ImageChampion = (ImageView) view.findViewById(R.id.ImageChamp);
+        ImageChampion = (ImageView) view.findViewById(R.id.ImageChampion);
         NombreChampion = (TextView) view.findViewById(R.id.NombreChampion);
         idChampion = (TextView) view.findViewById(R.id.idChampion);
         titleChampion = (TextView) view.findViewById(R.id.titleChampion);
