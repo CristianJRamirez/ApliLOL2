@@ -1,0 +1,40 @@
+private String InfoApi="https://developer.riotgames.com/api/methods#!/1206/4678";
+private String InfoData="https://developer.riotgames.com/docs/static-data";
+
+private String Api_KEY="RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3";
+private String AllChampion="https://euw.api.pvp.net/api/lol/euw/v1.2/champion?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;
+
+private int IdChampion;
+
+private String ChampionID ="https://euw.api.pvp.net/api/lol/euw/v1.2/champion/"+IdChampion+"?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;
+activo (bool)
+freetoplay(bool)
+rankedPlay(bool)
+
+
+private String ChampionLista="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//con nombres, ID, titulo,key
+private String ChampionListaImagenes="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=image&api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//con nombres, ID, titulo,key
+private  String ChampionIDDetalle="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+IdChampion+"?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//detelles del champion
+private  String ChampionIDDetalleImagen="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+IdChampion+"?champData=image&api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//detelles del champion
+
+
+
+
+http://ddragon.leagueoflegends.com/cdn/6.24.1/data/es_ES/champion.json
+ataque,defensa,magic,dificultat,vida...
+
+
+http://ddragon.leagueoflegends.com/cdn/6.24.1/data/es_ES/champion/Aatrox.json
+informacion de personaje Aatrox
+
+http://ddragon.leagueoflegends.com/cdn/6.24.1/data/es_ES/item.json
+Objetos y sus datos
+
+http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/mastery.json
+Maestrias
+
+http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/rune.json
+Runas
+
+http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/summoner.json
+Summoners-> Flash
