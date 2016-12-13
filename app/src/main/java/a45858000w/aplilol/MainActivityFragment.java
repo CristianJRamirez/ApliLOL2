@@ -1,6 +1,7 @@
 package a45858000w.aplilol;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +24,10 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import a45858000w.aplilol.databinding.FragmentMainBinding;
+
+import static a45858000w.aplilol.R.id.listaChampions;
 
 
 /**
@@ -53,22 +58,16 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+       /* View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ListView listaChampions = (ListView) view.findViewById(R.id.listaChampions);
+        ListView listaChampions = (ListView) view.findViewById(R.id.listaChampions);*/
+
+        FragmentMainBinding binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_main, container, false);
+        View view = binding.getRoot();
+
 
         champions = new ArrayList<>();
-
-    /*  String[] Ejemplos = {
-            "Maestro Yi",
-            "VI",
-            "Ashe",
-            "Garen",
-            "Xerath",
-            "Ekko",
-            "Jhin"
-            };
-        champions = new ArrayList<>(Arrays.asList(Ejemplos));*/
 
         adapter = new ChampionAdapter(
                 getContext(),
@@ -76,9 +75,9 @@ public class MainActivityFragment extends Fragment {
                 //R.id.txtChampion,
                 champions
         );
-        listaChampions.setAdapter(adapter);
+        binding.listaChampions.setAdapter(adapter);
 
-        listaChampions.setOnItemClickListener(new AdapterView.OnItemClickListener() {@Override
+        binding.listaChampions.setOnItemClickListener(new AdapterView.OnItemClickListener() {@Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             Champion champion = (Champion) adapterView.getItemAtPosition(i);
 
