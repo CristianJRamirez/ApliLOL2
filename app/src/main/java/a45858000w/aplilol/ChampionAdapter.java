@@ -51,8 +51,8 @@ public class ChampionAdapter extends ArrayAdapter<Champion> {
 
 
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
-        binding.txtChampion2.setText(c.getName());
-        binding.txtChampion.setText(c.getTitle());
+        binding.txtChampion.setText(c.getName());
+        binding.titulo.setText(c.getTitle());
         Glide.with(getContext()).load(c.getImageSquareFull()).into(binding.ImageChamp);
 
 
