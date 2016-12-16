@@ -28,7 +28,7 @@ public class Api {
     private String Api_KEY="RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3";
     private String AllChampion="https://euw.api.pvp.net/api/lol/euw/v1.2/champion?api_key="+Api_KEY;
 
-    private int IdChampion;
+    private String IdChampion;
 
     private String ChampionID ="https://euw.api.pvp.net/api/lol/euw/v1.2/champion/"+IdChampion+"?api_key="+Api_KEY;
 
@@ -37,7 +37,7 @@ public class Api {
     private String ChampionListaImagenes="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=image&api_key="+Api_KEY;//con nombres, ID, titulo,key
     private  String ChampionIDDetalle="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+IdChampion+"?api_key="+Api_KEY;//detelles del champion
     private  String ChampionIDDetalleImagen="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+IdChampion+"?champData=image&api_key="+Api_KEY;//detelles del champion
-
+    //private String ChampionAllDetail ="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+IdChampion+"?champData=all&api_key="+Api_KEY;
 
 
 
@@ -59,6 +59,7 @@ public class Api {
         }
         return null;
     }
+
     public ArrayList<Champion> getAllChampions(){
         Uri builtUri = Uri.parse("https://euw.api.pvp.net/api/lol/euw/v1.2/champion?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3")
                 .buildUpon()
@@ -101,11 +102,12 @@ public class Api {
         return null;
     }
 
-    private Champion getDetallesId(String id) {
-        Uri builtUri = Uri.parse("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+id+"?champData=image&api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3")
+    private Champion getDetallesId(String id) throws JSONException {
+
+        Uri builtUri = Uri.parse("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+id+"?champData=all&api_key="+Api_KEY)
                 .buildUpon()
                 .build();
-        String url = builtUri.toString();
+        String url =builtUri.toString();
 
         try {
             //consigo los detalles de los campeones
@@ -115,17 +117,19 @@ public class Api {
                     Champion.class);
 
             //para conseguir la informacion de las imagenes del campeon
-            String[] list = JsonResponse.split("\"image\":");
-            JsonResponse=list[1].substring(0,list[1].length()-2);
-            ImageChamp imagC= gson.fromJson(JsonResponse,
+            JSONObject data= new JSONObject(JsonResponse);
+            String jsonChamps = data.getJSONObject("image").toString();
+            ImageChamp imagC= gson.fromJson(jsonChamps,
                     ImageChamp.class);
-
 
             //seteo el valor de la imagen en el campeon
             String img[]=imagC.getFull().split("\\.");
             champ.setImageSprite(img[0]+"_0.jpg");//ACABAR
             champ.setImageSquareFull(imagC.getFull());
             //Log.d("IMGCHMP",champ.getImageSquareFull() +"///"+champ.getImageSprite());
+
+            //Log.d("CHAMP ---->",champ.toString());
+
 
             return champ;
             } catch (IOException e) {
