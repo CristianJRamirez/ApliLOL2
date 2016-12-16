@@ -23,6 +23,8 @@ public class Champion implements Serializable {
     private String ImageSprite;
     private String ImageY;
     private String ImageX;
+    private String lore;
+    private String blurb;
 
     public String getName() {
         return name;
@@ -104,6 +106,22 @@ public class Champion implements Serializable {
         ImageX = imageX;
     }
 
+    public String getLore() {
+        return lore;
+    }
+
+    public void setLore(String lore) {
+        this.lore = lore;
+    }
+
+    public String getBlurb() {
+        return blurb;
+    }
+
+    public void setBlurb(String blurb) {
+        this.blurb = blurb;
+    }
+
     @Override
     public String toString() {
         return "Champion{" +
@@ -113,6 +131,8 @@ public class Champion implements Serializable {
                 ", key='" + key + '\'' +
                 ", ImageSquareFull='" + ImageSquareFull + '\'' +
                 ", ImageSprite='" + ImageSprite + '\'' +
+                ", lore='" + lore + '\'' +
+                ", blurb='" + blurb + '\'' +
                 '}';
     }
 }
