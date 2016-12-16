@@ -14,8 +14,8 @@ rankedPlay(bool)
 
 private String ChampionLista="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//con nombres, ID, titulo,key
 private String ChampionListaImagenes="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=image&api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//con nombres, ID, titulo,key
-private  String ChampionIDDetalle="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+IdChampion+"?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//detelles del champion
-private  String ChampionIDDetalleImagen="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+IdChampion+"?champData=image&api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//detelles del champion
+private String ChampionIDDetalle="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+IdChampion+"?api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//detelles del champion
+private String ChampionIDDetalleImagen="https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+IdChampion+"?champData=image&api_key=RGAPI-f53a2e9d-2955-4e4e-9582-6725ed511ba3;//detelles del champion
 
 
 
