@@ -46,10 +46,6 @@ public class ChampionAdapter extends ArrayAdapter<Champion> {
                     binding = DataBindingUtil.getBinding(convertView);
         }
 
-
-
-
-
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
         binding.txtChampion.setText(c.getName());
         binding.titulo.setText(c.getTitle());

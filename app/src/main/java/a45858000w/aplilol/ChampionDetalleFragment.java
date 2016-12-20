@@ -67,6 +67,8 @@ public class ChampionDetalleFragment extends Fragment {
         binding.NombreChampion.setText(Html.fromHtml("<b>Nombre : </b> " +champion.getName()));
         binding.idChampion.setText(Html.fromHtml("<b>ID : </b> " + champion.getId()));
         binding.titleChampion.setText(Html.fromHtml("<b>Titulo : </b> " + champion.getTitle()));
+        binding.txtlore.setText(Html.fromHtml("<b>Lore : </b> " + champion.getLore()));
+        binding.descripcionChamp.setText(Html.fromHtml("<b>Descripcion : </b> " + champion.getBlurb()));
         Glide.with(getContext()).load(champion.getImageSprite()).into(binding.ImageChampion);
     }
 }
