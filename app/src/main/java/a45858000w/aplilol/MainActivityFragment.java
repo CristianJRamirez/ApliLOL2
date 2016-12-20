@@ -22,6 +22,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.alexvasilkov.events.Events;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -87,6 +89,7 @@ public class MainActivityFragment extends Fragment {
             }
          });
 
+
         return view;
     }
 
@@ -111,9 +114,10 @@ public class MainActivityFragment extends Fragment {
 
     @Override
     public void onStart() {
-            super.onStart();
-            refresh();
-        }
+        super.onStart();
+        refresh();
+    }
+
 
     private void refresh() {
        /*Api api = new Api();

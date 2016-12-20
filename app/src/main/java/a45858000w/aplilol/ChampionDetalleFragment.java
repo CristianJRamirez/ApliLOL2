@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alexvasilkov.events.Events;
 import com.bumptech.glide.Glide;
 
 import a45858000w.aplilol.databinding.FragmentChampionDetalleBinding;
@@ -29,6 +30,7 @@ public class ChampionDetalleFragment extends Fragment {
     private TextView titleChampion;
     private TextView descripcionChamp;
     private FragmentChampionDetalleBinding binding;
+    private Champion champion;
 
 
 
@@ -47,7 +49,7 @@ public class ChampionDetalleFragment extends Fragment {
 
         Intent i = getActivity().getIntent();
         if (i != null) {
-            Champion champion = (Champion) i.getSerializableExtra("champion");
+            champion = (Champion) i.getSerializableExtra("champion");
 
             if (champion != null) {
                 updateUi(champion);
@@ -57,6 +59,22 @@ public class ChampionDetalleFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Events.register(this);
+    }
+
+    @Events.Subscribe("click-boton")
+    private void onClickButton() {
+        Events.create("campeon").param(champion).post();
+
+        Intent intent = new Intent(getContext(), ActivityInfoChampion.class);
+        intent.putExtra("champion", champion);
+        startActivity(intent);
+    }
+
+
     private void updateUi(Champion champion)
     {
         Log.d("CHAMPION", champion.toString());
@@ -65,7 +83,7 @@ public class ChampionDetalleFragment extends Fragment {
 
 
         binding.NombreChampion.setText(Html.fromHtml("<b>Nombre : </b> " +champion.getName()));
-        binding.idChampion.setText(Html.fromHtml("<b>ID : </b> " + champion.getId()));
+        //binding.idChampion.setText(Html.fromHtml("<b>ID : </b> " + champion.getId()));
         binding.titleChampion.setText(Html.fromHtml("<b>Titulo : </b> " + champion.getTitle()));
         binding.txtlore.setText(Html.fromHtml("<b>Lore : </b> " + champion.getLore()));
         binding.descripcionChamp.setText(Html.fromHtml("<b>Descripcion : </b> " + champion.getBlurb()));

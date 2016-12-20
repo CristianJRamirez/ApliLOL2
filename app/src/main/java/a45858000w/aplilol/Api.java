@@ -1,21 +1,18 @@
 package a45858000w.aplilol;
 
 import android.net.Uri;
-import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.GenericArrayType;
-import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
-import java.util.Map;
+
+import a45858000w.aplilol.DatosSecundarios.ImageChamp;
+import a45858000w.aplilol.DatosSecundarios.InfoEstadisticas;
 
 /**
  * Created by 45858000w on 02/12/16.
@@ -129,6 +126,31 @@ public class Api {
             //Log.d("IMGCHMP",champ.getImageSquareFull() +"///"+champ.getImageSprite());
 
             //Log.d("CHAMP ---->",champ.toString());
+
+
+            //tags -> para tipo de campeon : mago, adc, tanque..
+            //para conseguir la informacion de las imagenes del campeon
+            JSONObject dataTag= new JSONObject(JsonResponse);
+            String jsonChampsTag = dataTag.getJSONArray("tags").toString();
+            champ.setTipoChamp(jsonChampsTag);
+
+
+
+            //info -> para el ataque, defensa, magic, dificultat
+            //para conseguir la informacion de estadisticas del campeon
+            JSONObject dataInfo= new JSONObject(JsonResponse);
+            String jsonChampsInfo = dataInfo.getJSONObject("info").toString();
+            InfoEstadisticas infoE= gson.fromJson(jsonChampsInfo,
+                    InfoEstadisticas.class);
+
+            champ.setAttack(infoE.getAttack());
+            champ.setDefense(infoE.getDefense());
+            champ.setMagic(infoE.getMagic());
+            champ.setDifficulty(infoE.getDifficulty());
+
+
+
+
 
 
             return champ;

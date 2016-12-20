@@ -26,6 +26,10 @@
         <activity
             android:name=".ChampionDetalle"
             android:label="@string/title_activity_champion_detalle"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivityInfoChampion"
+            android:label="@string/title_activity_info_champion"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

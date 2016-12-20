@@ -26,6 +26,14 @@ public class Champion implements Serializable {
     private String lore;
     private String blurb;
 
+    private String tipoChamp;
+
+    private int attack ;
+    private int defense;
+    private int magic;
+    private int difficulty;
+
+
     public String getName() {
         return name;
     }
@@ -122,6 +130,46 @@ public class Champion implements Serializable {
         this.blurb = blurb;
     }
 
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public int getMagic() {
+        return magic;
+    }
+
+    public void setMagic(int magic) {
+        this.magic = magic;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public String getTipoChamp() {
+        return tipoChamp;
+    }
+
+    public void setTipoChamp(String tipoChamp) {
+        this.tipoChamp = tipoChamp;
+    }
+
     @Override
     public String toString() {
         return "Champion{" +
@@ -133,6 +181,11 @@ public class Champion implements Serializable {
                 ", ImageSprite='" + ImageSprite + '\'' +
                 ", lore='" + lore + '\'' +
                 ", blurb='" + blurb + '\'' +
+                ", tipoChamp='" + tipoChamp + '\'' +
+                ", attack=" + attack +
+                ", defense=" + defense +
+                ", magic=" + magic +
+                ", difficulty=" + difficulty +
                 '}';
     }
 }
