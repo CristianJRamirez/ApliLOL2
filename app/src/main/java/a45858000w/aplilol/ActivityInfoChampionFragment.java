@@ -60,6 +60,7 @@ public class ActivityInfoChampionFragment extends Fragment {
 
     @Events.Subscribe("campeon")
     private void onCampeonDetalles(Champion champion) {
+
         updateUi(champion);
     }
 
@@ -70,9 +71,11 @@ public class ActivityInfoChampionFragment extends Fragment {
 
 
         binding.CampeonNombre.setText(Html.fromHtml("<b>Nombre : </b> " +champion.getName()));
-        binding.txtAttack.setText((champion.getAttack()));
-        binding.txtDefense.setText(champion.getDefense());
-        binding.txtAbility.setText(champion.getMagic());
-        binding.txtDifficulty.setText(champion.getDifficulty());
+        binding.tViewTipoCampeon.setText(this.champion.getTipoChamp());
+
+        binding.tvAtaque.setText(String.valueOf(this.champion.getAttack()));
+        binding.tvDefensa.setText(String.valueOf(this.champion.getDefense()));
+        binding.tvAbilidad.setText(String.valueOf(this.champion.getMagic()));
+        binding.tvDificultat.setText(String.valueOf(this.champion.getDifficulty()));
     }
 }
