@@ -48,7 +48,7 @@ public class MainActivityFragment extends Fragment {
     private ArrayList<Champion> champions;
    // private ArrayAdapter<Champion> adapter;
 
-    private ChampionAdapter adapter;
+    private ChampionCursorAdapter adapter;
     //endregion
 
 
@@ -76,12 +76,8 @@ public class MainActivityFragment extends Fragment {
 
         champions = new ArrayList<>();
 
-        adapter = new ChampionAdapter(
-                getContext(),
-                R.layout.champion_layout,
-                //R.id.txtChampion,
-                champions
-        );
+        adapter = new ChampionCursorAdapter(getContext(),Champion.class);
+
         binding.listaChampions.setAdapter(adapter);
 
         binding.listaChampions.setOnItemClickListener(new AdapterView.OnItemClickListener() {@Override
