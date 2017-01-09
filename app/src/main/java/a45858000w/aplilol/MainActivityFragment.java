@@ -3,6 +3,7 @@ package a45858000w.aplilol;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -30,8 +31,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import a45858000w.aplilol.databinding.FragmentMainBinding;
+import nl.littlerobots.cupboard.tools.provider.UriHelper;
 
 import static a45858000w.aplilol.R.id.listaChampions;
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 
 /**
@@ -135,39 +138,31 @@ public class MainActivityFragment extends Fragment {
         rdt.execute();
     }
 
-    private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Champion>> {
+    private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
         @Override
-        protected ArrayList<Champion> doInBackground(Void... voids) {
+        protected Void doInBackground(Void... voids) {
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             String nombre = preferences.getString("nombre", "todos");
 
             //Api api = new Api();
-            ArrayList<Champion> result =null;// api.getAllChampions();
+            ArrayList<Champion> result = null;// api.getAllChampions();
 
-            if ((nombre.equals("Todos")) ||(nombre.equals("todos")) || (nombre.isEmpty())) {
-                 result = Api.getAllChampions();
+            if ((nombre.equals("Todos")) || (nombre.equals("todos")) || (nombre.isEmpty())) {
+                result = Api.getAllChampions();
             } else {
-                 result = Api.getAllChampions(nombre);
+                result = Api.getAllChampions(nombre);
             }
 
             Log.d("DEBUG", result.toString());
 
-            return result;
-        }
 
-        //crear filtros
-        //https://github.com/CristianJRamirez/MagicList2/commit/599406c2f125d4d74ea9f34e5c9f649d14aa8845
-        //https://github.com/CristianJRamirez/MagicList2/commit/3e485d4447b9917fe2ca74e0d3453a810c381b7b
-        //https://github.com/CristianJRamirez/MagicList2/commit/2f4b5ba353c4c3658492a6e2f5ed2ee7624711d9
+            UriHelper helper = UriHelper.with(ChampionContentProvider.AUTHORITY);
+            Uri championUri = helper.getUri(Champion.class);
+            cupboard().withContext(getContext()).put(championUri, Champion.class, result);
 
-        @Override
-        protected void onPostExecute(ArrayList<Champion> champions) {
-            super.onPostExecute(champions);
-            adapter.clear();
-            for (Champion c : champions) {
-                    adapter.add(c);
-                }
+
+            return null;
         }
     }
     //endregion
