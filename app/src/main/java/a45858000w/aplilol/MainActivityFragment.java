@@ -1,5 +1,6 @@
 package a45858000w.aplilol;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -50,7 +51,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     //region VARIABLES
     private ArrayList<Champion> champions;
    // private ArrayAdapter<Champion> adapter;
-
+    private ProgressDialog dialog;
     private ChampionCursorAdapter adapter;
     //endregion
 
@@ -80,6 +81,8 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         champions = new ArrayList<>();
 
         adapter = new ChampionCursorAdapter(getContext(),Champion.class);
+        dialog = new ProgressDialog(getContext());
+        dialog.setMessage("Loading...");
 
         binding.listaChampions.setAdapter(adapter);
 
@@ -127,7 +130,6 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     @Override
     public void onStart() {
         super.onStart();
-        refresh();
     }
 
 
@@ -178,6 +180,17 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
 
             return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.show();
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            dialog.dismiss();
         }
     }
     //endregion
