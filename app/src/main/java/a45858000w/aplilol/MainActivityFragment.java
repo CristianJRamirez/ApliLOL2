@@ -156,10 +156,7 @@ public class MainActivityFragment extends Fragment {
 
             Log.d("DEBUG", result.toString());
 
-
-            /*UriHelper helper = UriHelper.with(ChampionContentProvider.AUTHORITY);
-            Uri championUri = helper.getUri(Champion.class);
-            cupboard().withContext(getContext()).put(championUri, Champion.class, result);*/
+            DataManager.deleteChampions(getContext());
             DataManager.saveChampions(result, getContext());
 
 

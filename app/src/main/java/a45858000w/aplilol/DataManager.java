@@ -25,4 +25,9 @@ public class DataManager {
     static void saveChampions(ArrayList<Champion> champions, Context context) {
         cupboard().withContext(context).put(CHAMPION_URI, Champion.class, champions);
     }
+
+    static void deleteChampions(Context context) {
+        cupboard().withContext(context).delete(CHAMPION_URI, "_id > ?", "1");
+    }
+
 }
