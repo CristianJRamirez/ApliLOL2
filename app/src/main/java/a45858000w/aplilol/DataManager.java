@@ -33,6 +33,6 @@ public class DataManager {
 
     static CursorLoader getCursorLoader(Context context) {
         return new CursorLoader(context, CHAMPION_URI, null, null, null, null);
-    }
+    }//TODO: buscar los datos que van en estos nulos, que ahi van los select y los where de la bbdd y desde ahi podemos recoger los datos
 
 }
