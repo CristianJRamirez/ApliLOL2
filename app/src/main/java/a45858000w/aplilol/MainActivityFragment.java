@@ -2,11 +2,14 @@ package a45858000w.aplilol;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +45,7 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
  */
 
 
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     //region VARIABLES
     private ArrayList<Champion> champions;
@@ -90,6 +93,8 @@ public class MainActivityFragment extends Fragment {
             }
          });
 
+        getLoaderManager().initLoader(0, null, this);
+
 
         return view;
     }
@@ -133,6 +138,22 @@ public class MainActivityFragment extends Fragment {
         RefreshDataTask rdt = new RefreshDataTask();
         rdt.execute();
     }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return DataManager.getCursorLoader(getContext());
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        adapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        adapter.swapCursor(null);
+    }
+
 
     private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
         @Override

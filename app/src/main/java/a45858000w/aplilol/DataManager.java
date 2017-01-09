@@ -5,6 +5,7 @@ package a45858000w.aplilol;
  */
 
 import android.content.Context;
+import android.support.v4.content.CursorLoader;
 import android.net.Uri;
 
 import java.util.ArrayList;
@@ -27,7 +28,11 @@ public class DataManager {
     }
 
     static void deleteChampions(Context context) {
-        cupboard().withContext(context).delete(CHAMPION_URI, "_id > ?", "1");
+        cupboard().withContext(context).delete(CHAMPION_URI, "_id > ?", "0");
+    }
+
+    static CursorLoader getCursorLoader(Context context) {
+        return new CursorLoader(context, CHAMPION_URI, null, null, null, null);
     }
 
 }
