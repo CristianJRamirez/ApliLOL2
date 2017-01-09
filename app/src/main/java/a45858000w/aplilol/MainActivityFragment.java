@@ -1,7 +1,9 @@
 package a45858000w.aplilol;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -109,6 +111,12 @@ public class MainActivityFragment extends Fragment {
             refresh();
             return true;
         }
+        else if (id == R.id.filtro) {
+            Intent i = new Intent(getContext(), SettingsActivity.class);
+            startActivity(i);
+            refresh();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -130,8 +138,18 @@ public class MainActivityFragment extends Fragment {
     private class RefreshDataTask extends AsyncTask<Void, Void, ArrayList<Champion>> {
         @Override
         protected ArrayList<Champion> doInBackground(Void... voids) {
+
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            String nombre = preferences.getString("nombre", "todos");
+
             Api api = new Api();
-            ArrayList<Champion> result = api.getAllChampions();
+            ArrayList<Champion> result =null;// api.getAllChampions();
+
+            if ((nombre.equals("Todos")) ||(nombre.equals("todos")) || (nombre.isEmpty())) {
+                 result = api.getAllChampions();
+            } else {
+                 result = api.getAllChampions(nombre);
+            }
 
             Log.d("DEBUG", result.toString());
 

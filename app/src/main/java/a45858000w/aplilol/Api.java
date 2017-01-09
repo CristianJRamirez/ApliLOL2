@@ -1,6 +1,7 @@
 package a45858000w.aplilol;
 
 import android.net.Uri;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -159,5 +160,19 @@ public class Api {
             }
         return null;
 
+    }
+
+    public ArrayList<Champion> getAllChampions(String nombre) {
+        ArrayList<Champion> champsFiltro =new ArrayList<>();
+        ArrayList<Champion> champs =getAllChampions();
+        for (Champion c: champs ) {
+            if ((c.getName().equalsIgnoreCase(nombre)) ||(c.getName().contains(nombre)))
+            {
+                champsFiltro.add(c);
+                Log.d("CH", c.toString());
+
+            }
+        }
+        return champsFiltro;
     }
 }

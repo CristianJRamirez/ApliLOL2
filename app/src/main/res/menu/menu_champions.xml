@@ -6,4 +6,9 @@
         android:orderInCategory="100"
         android:title="Actualizar"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/filtro"
+        android:orderInCategory="100"
+        android:title="Filtro"
+        app:showAsAction="never" />
 </menu>
