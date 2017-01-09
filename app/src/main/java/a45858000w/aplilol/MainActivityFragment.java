@@ -142,13 +142,13 @@ public class MainActivityFragment extends Fragment {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             String nombre = preferences.getString("nombre", "todos");
 
-            Api api = new Api();
+            //Api api = new Api();
             ArrayList<Champion> result =null;// api.getAllChampions();
 
             if ((nombre.equals("Todos")) ||(nombre.equals("todos")) || (nombre.isEmpty())) {
-                 result = api.getAllChampions();
+                 result = Api.getAllChampions();
             } else {
-                 result = api.getAllChampions(nombre);
+                 result = Api.getAllChampions(nombre);
             }
 
             Log.d("DEBUG", result.toString());
