@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout >
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/content_activity_info_champion"
@@ -27,38 +27,37 @@
 
         <TextView
             android:text="Attack"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
             android:id="@+id/lblAttack"
-            android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@+id/CampeonNombre"
-            android:layout_marginStart="24dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="24dp" />
+            app:layout_constraintLeft_toLeftOf="@+id/lblTipoCampeon"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/lblTipoCampeon"
+            app:layout_constraintRight_toRightOf="@+id/lblTipoCampeon" />
 
         <TextView
             android:text="Defense"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:id="@+id/lblDefense"
-            app:layout_constraintLeft_toLeftOf="@+id/lblAttack"
-            app:layout_constraintRight_toRightOf="@+id/lblAttack"
-            app:layout_constraintHorizontal_bias="1.0"
             android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/lblAttack" />
+            app:layout_constraintTop_toBottomOf="@+id/lblAttack"
+            app:layout_constraintLeft_toLeftOf="@+id/lblAttack"
+            app:layout_constraintRight_toRightOf="@+id/lblAttack" />
 
         <TextView
             android:text="Ability"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/lblAbility"
             app:layout_constraintRight_toRightOf="@+id/lblDefense"
             app:layout_constraintTop_toBottomOf="@+id/lblDefense"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="@+id/lblDefense" />
 
         <TextView
             android:text="Difficulty"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/lblDifficulty"
             android:layout_marginTop="8dp"
@@ -67,40 +66,67 @@
             app:layout_constraintRight_toRightOf="@+id/lblAbility" />
 
         <TextView
-            android:text="TextView"
+            android:text="Tipo de Campeon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtAttack"
-            android:layout_marginStart="8dp"
-            app:layout_constraintLeft_toRightOf="@+id/lblAttack"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lblAttack" />
+            android:id="@+id/lblTipoCampeon"
+            android:layout_marginStart="64dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/CampeonNombre"
+            app:layout_constraintRight_toLeftOf="@+id/CampeonNombre"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtDefense"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtAttack"
+            android:id="@+id/tViewTipoCampeon"
+            android:layout_marginStart="32dp"
+            app:layout_constraintLeft_toRightOf="@+id/lblTipoCampeon"
+            android:layout_marginLeft="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblTipoCampeon"
+            app:layout_constraintTop_toTopOf="@+id/lblTipoCampeon" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvAtaque"
+            app:layout_constraintTop_toTopOf="@+id/lblAttack"
+            app:layout_constraintBottom_toBottomOf="@+id/lblAttack"
+            app:layout_constraintLeft_toLeftOf="@+id/tViewTipoCampeon" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvDefensa"
+            app:layout_constraintLeft_toLeftOf="@+id/tvAtaque"
+            app:layout_constraintTop_toTopOf="@+id/lblDefense"
             app:layout_constraintBottom_toBottomOf="@+id/lblDefense"
-            app:layout_constraintLeft_toLeftOf="@+id/txtAttack" />
+            app:layout_constraintRight_toRightOf="@+id/tvAtaque" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtAbility"
-            tools:layout_editor_absoluteY="119dp"
-            tools:layout_editor_absoluteX="90dp" />
+            android:id="@+id/tvAbilidad"
+            app:layout_constraintTop_toTopOf="@+id/lblAbility"
+            app:layout_constraintLeft_toLeftOf="@+id/tvDefensa" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtDifficulty"
-            app:layout_constraintLeft_toLeftOf="@+id/txtAbility"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/txtAbility" />
+            android:id="@+id/tvDificultat"
+            app:layout_constraintTop_toTopOf="@+id/lblDifficulty"
+            app:layout_constraintBottom_toBottomOf="@+id/lblDifficulty"
+            app:layout_constraintLeft_toLeftOf="@+id/tvAbilidad"
+            app:layout_constraintRight_toRightOf="@+id/tvAbilidad" />
+
+
     </android.support.constraint.ConstraintLayout>
 </layout>
