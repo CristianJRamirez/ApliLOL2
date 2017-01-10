@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,7 +97,15 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             }
          });
 
-        getLoaderManager().initLoader(0, null, this);
+
+        Loader<Object> loader = getLoaderManager().getLoader(0);
+        if (loader != null && ! loader.isReset()) {
+            getLoaderManager().restartLoader(0, null, this);
+        } else {
+            getLoaderManager().initLoader(0, null, this);
+        }
+
+        //getLoaderManager().initLoader(0, null, this);
 
 
         return view;
@@ -168,12 +177,18 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             ArrayList<Champion> result = null;// api.getAllChampions();
 
             if ((nombre.equals("Todos")) || (nombre.equals("todos")) || (nombre.isEmpty())) {
+                //Log.d("____________________","1 -----------------------------------------------------------------------------------");
                 result = Api.getAllChampions();
+                //DataManager.getCursorLoader(getContext());
+
             } else {
+                //Log.d("____________________","2 -----------------------------------------------------------------------------------");
                 result = Api.getAllChampions(nombre);
+                //DataManager.getCursorLoaderPrueba(getContext(),null,Champion.class.getName() +"=", new String[] {"%"+nombre+"%"},null);
             }
 
             Log.d("DEBUG", result.toString());
+
 
             DataManager.deleteChampions(getContext());
             DataManager.saveChampions(result, getContext());
