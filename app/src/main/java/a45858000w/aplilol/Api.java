@@ -1,6 +1,7 @@
 package a45858000w.aplilol;
 
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -11,9 +12,15 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
+import a45858000w.aplilol.DatosSecundarios.Habilidades;
 import a45858000w.aplilol.DatosSecundarios.ImageChamp;
 import a45858000w.aplilol.DatosSecundarios.InfoEstadisticas;
+import a45858000w.aplilol.DatosSecundarios.InfoPassive;
 
 /**
  * Created by 45858000w on 02/12/16.
@@ -101,8 +108,9 @@ public class Api {
     }
 
     private static Champion getDetallesId(String id) throws JSONException {
-
-        Uri builtUri = Uri.parse("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+id+"?champData=all&api_key="+Api_KEY)
+        //https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+id+"?locale=es_ES&champData=all&api_key="+Api_KEY
+        //https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+id+"?champData=all&api_key="+Api_KEY
+        Uri builtUri = Uri.parse("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion/"+id+"?locale=es_ES&champData=all&api_key="+Api_KEY)
                 .buildUpon()
                 .build();
         String url =builtUri.toString();
@@ -130,7 +138,6 @@ public class Api {
 
 
             //tags -> para tipo de campeon : mago, adc, tanque..
-            //para conseguir la informacion de las imagenes del campeon
             JSONObject dataTag= new JSONObject(JsonResponse);
             String jsonChampsTag = dataTag.getJSONArray("tags").toString();
             champ.setTipoChamp(jsonChampsTag);
@@ -150,8 +157,35 @@ public class Api {
             champ.setDifficulty(infoE.getDifficulty());
 
 
+            //añadir datos de la passiva
+            JSONObject dataPassive= new JSONObject(JsonResponse);
+            String jsonChampsPassive = dataPassive.getJSONObject("passive").toString();
+            InfoPassive infoP= gson.fromJson(jsonChampsPassive,
+                    InfoPassive.class);
+
+            champ.setNamePassive(infoP.getName());
+            champ.setDescriptionPassive(infoP.getDescription());
 
 
+            //allytips -> breve descripcion de su funcionalidad
+            JSONObject dataAllytips= new JSONObject(JsonResponse);
+            String jsonChampsAllytips = dataAllytips.getJSONArray("allytips").toString();
+            champ.setAllytipsFuncionalidad(jsonChampsAllytips);
+
+            //enemytips -> breve descripcion de como para al campeon
+            JSONObject dataEnemytips= new JSONObject(JsonResponse);
+            String jsonChampsEnemytips = dataEnemytips.getJSONArray("enemytips").toString();
+            champ.setEnemytipsAnulacion(jsonChampsEnemytips);
+
+
+
+            //spells -> para las Habilidades
+          //  JSONObject dataHabilidad= new JSONObject(JsonResponse);
+          //  String jsonChampsHabilidad = dataHabilidad.getJSONObject("spells").toString();
+      /*      List<Habilidades> hab= new List<Habilidades>(gson.fromJson(jsonChampsInfo,
+                    Habilidades.class));*/
+//JSONArray
+          //  Log.d("HABILIDADES",jsonChampsHabilidad);
 
 
             return champ;
@@ -165,12 +199,13 @@ public class Api {
     public static ArrayList<Champion> getAllChampions(String nombre) {
         ArrayList<Champion> champsFiltro =new ArrayList<>();
         ArrayList<Champion> champs =getAllChampions();
-        for (Champion c: champs ) {
-            if ((c.getName().equalsIgnoreCase(nombre)) ||(c.getName().contains(nombre)))
-            {
-                champsFiltro.add(c);
-                Log.d("CH", c.toString());
+        if (champs!=null) {
+            for (Champion c : champs) {
+                if ((c.getName().equalsIgnoreCase(nombre)) || (c.getName().contains(nombre))) {
+                    champsFiltro.add(c);
+                    Log.d("CH", c.toString());
 
+                }
             }
         }
         return champsFiltro;

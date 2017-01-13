@@ -1,6 +1,9 @@
 package a45858000w.aplilol;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import a45858000w.aplilol.DatosSecundarios.Habilidades;
 
 /**
  * Created by 45858000w on 02/12/16.
@@ -33,6 +36,13 @@ public class Champion implements Serializable {
     private int magic;
     private int difficulty;
 
+    private String namePassive;
+    private String descriptionPassive;
+
+    private String allytipsFuncionalidad;
+    private String enemytipsAnulacion;
+
+    ///private ArrayList<Habilidades> habilidades;
 
     public String getName() {
         return name;
@@ -170,6 +180,46 @@ public class Champion implements Serializable {
         this.tipoChamp = tipoChamp;
     }
 
+    public String getDescriptionPassive() {
+        return descriptionPassive;
+    }
+
+    public void setDescriptionPassive(String descriptionPassive) {
+        this.descriptionPassive = descriptionPassive;
+    }
+
+    public String getNamePassive() {
+        return namePassive;
+    }
+
+    public void setNamePassive(String namePassive) {
+        this.namePassive = namePassive;
+    }
+
+    /*public ArrayList<Habilidades> getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(ArrayList<Habilidades> habilidades) {
+        this.habilidades = habilidades;
+    }
+*/
+    public String getAllytipsFuncionalidad() {
+        return allytipsFuncionalidad;
+    }
+
+    public void setAllytipsFuncionalidad(String allytipsFuncionalidad) {
+        this.allytipsFuncionalidad = allytipsFuncionalidad;
+    }
+
+    public String getEnemytipsAnulacion() {
+        return enemytipsAnulacion;
+    }
+
+    public void setEnemytipsAnulacion(String enemytipsAnulacion) {
+        this.enemytipsAnulacion = enemytipsAnulacion;
+    }
+
     @Override
     public String toString() {
         return "Champion{" +
@@ -186,6 +236,8 @@ public class Champion implements Serializable {
                 ", defense=" + defense +
                 ", magic=" + magic +
                 ", difficulty=" + difficulty +
+                ", PassiveName=" + namePassive +
+                ", PassiveDescripcion=" + descriptionPassive +
                 '}';
     }
 }

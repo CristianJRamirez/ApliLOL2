@@ -77,5 +77,16 @@ public class ActivityInfoChampionFragment extends Fragment {
         binding.tvDefensa.setText(String.valueOf(this.champion.getDefense()));
         binding.tvAbilidad.setText(String.valueOf(this.champion.getMagic()));
         binding.tvDificultat.setText(String.valueOf(this.champion.getDifficulty()));
+
+        binding.pbAttack.setProgress(this.champion.getAttack()*10);
+        binding.pbDefense.setProgress(this.champion.getDefense()*10);
+        binding.pbAbility.setProgress(this.champion.getMagic()*10);
+        binding.pbDifficulty.setProgress(this.champion.getDifficulty()*10);
+
+        binding.lblPassive.setText("<b>Nombre de la Pasiva : </b> "+this.champion.getNamePassive());
+        binding.txtPassive.setText(this.champion.getDescriptionPassive());
+
+        binding.txtAllytips.setText(this.champion.getAllytipsFuncionalidad());
+        binding.txtEnemytips.setText(this.champion.getEnemytipsAnulacion());
     }
 }
